@@ -10,6 +10,9 @@ export default {
       spacing: {
         30: "7.5rem",
       },
+      transitionTimingFunction: {
+        header: "cubic-bezier(0.77, 0, 0.175, 1)",
+      },
     },
   },
   plugins: [],
