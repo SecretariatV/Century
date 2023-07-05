@@ -24,11 +24,11 @@ const Header = ({
   return (
     <div className="w-full">
       {viewTopHeader && <TopHeader />}
-      <div className="px-30 py-7.5 flex items-center gap-26 bg-primary relative">
+      <div className="bg-primary relative sm:flex items-center max-lg:justify-between lg:gap-26 gap-2 py-7.5 xl:px-30 md:px-20 sm:px-10 hidden">
         <div>
           <img src={logo} alt="logo" />
         </div>
-        <div className="flex items-center gap-8">
+        <div className="flex items-center lg:gap-8 gap-3">
           {headerLink.map((item, index) => (
             <div
               className={`cursor-pointer relative after:content-[' '] after:h-[2px] after:absolute after:bg-white ${
@@ -45,7 +45,7 @@ const Header = ({
             </div>
           ))}
         </div>
-        <div className="absolute top-3 right-30">
+        <div className="absolute top-3 xl:right-30 lg:right-20 lg:block hidden">
           <img src={mark} alt="mark" />
         </div>
       </div>

@@ -6,7 +6,7 @@ const TopHeader = () => {
   const [selectRightID, setSelectRightID] = useState<number>();
 
   return (
-    <div className="w-full py-3 px-30 bg-secondary flex items-center justify-between">
+    <div className="w-full bg-secondary flex items-center justify-between sm:py-3 py-1 xl:px-30 md:px-20 sm:px-10 xs:px-5 px-2">
       <div className="flex items-center gap-6">
         {leftTopHeader.map((item, index) => (
           <div
@@ -18,7 +18,7 @@ const TopHeader = () => {
             onClick={() => setSelectLeftID(index)}
             key={item.type}
           >
-            <h1 className="uppercase font-medium text-[15px] leading-[14px] tracking-tighter">
+            <h1 className="uppercase font-medium sm:text-base text-xs leading-[14px] tracking-tighter">
               {item.title}
             </h1>
           </div>
@@ -35,7 +35,7 @@ const TopHeader = () => {
             onClick={() => setSelectRightID(index)}
             key={item.type}
           >
-            <h1 className="uppercase font-medium text-[15px] leading-[14px] tracking-tighter">
+            <h1 className="uppercase font-medium sm:text-base text-xs leading-[14px] tracking-tighter">
               {item.title}
             </h1>
           </div>
