@@ -8,6 +8,8 @@ export default {
         secondary: "#c6b68b",
       },
       spacing: {
+        7.5: "1.875rem",
+        26: "6.5rem",
         30: "7.5rem",
       },
       transitionTimingFunction: {

@@ -526,8 +526,28 @@ html {
   --tw-backdrop-sepia:  ;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .relative {
   position: relative;
+}
+
+.right-0 {
+  right: 0px;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.right-30 {
+  right: 7.5rem;
+}
+
+.top-3 {
+  top: 0.75rem;
 }
 
 .flex {
@@ -562,12 +582,20 @@ html {
   justify-content: space-between;
 }
 
+.gap-26 {
+  gap: 6.5rem;
+}
+
 .gap-4 {
   gap: 1rem;
 }
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.gap-8 {
+  gap: 2rem;
 }
 
 .bg-primary {
@@ -588,6 +616,16 @@ html {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.py-7 {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
+}
+
+.py-7\.5 {
+  padding-top: 1.875rem;
+  padding-bottom: 1.875rem;
 }
 
 .text-center {
@@ -642,6 +680,11 @@ html {
   color: rgb(198 182 139 / var(--tw-text-opacity));
 }
 
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .after\:absolute::after {
   content: var(--tw-content);
   position: absolute;
@@ -652,20 +695,26 @@ html {
   height: 2px;
 }
 
-.after\:w-full::after {
-  content: var(--tw-content);
-  width: 100%;
-}
-
 .after\:w-0::after {
   content: var(--tw-content);
   width: 0px;
+}
+
+.after\:w-full::after {
+  content: var(--tw-content);
+  width: 100%;
 }
 
 .after\:bg-black::after {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.after\:bg-white::after {
+  content: var(--tw-content);
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .after\:transition-all::after {
