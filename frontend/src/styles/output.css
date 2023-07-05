@@ -534,20 +534,24 @@ html {
   position: relative;
 }
 
-.right-0 {
-  right: 0px;
-}
-
-.top-0 {
-  top: 0px;
+.left-1\/2 {
+  left: 50%;
 }
 
 .right-30 {
   right: 7.5rem;
 }
 
+.top-100 {
+  top: 25rem;
+}
+
 .top-3 {
   top: 0.75rem;
+}
+
+.z-10 {
+  z-index: 10;
 }
 
 .m-auto {
@@ -558,6 +562,14 @@ html {
   display: flex;
 }
 
+.grid {
+  display: grid;
+}
+
+.h-\[245px\] {
+  height: 245px;
+}
+
 .h-screen {
   height: 100vh;
 }
@@ -566,16 +578,33 @@ html {
   min-height: 100vh;
 }
 
+.w-300 {
+  width: 75rem;
+}
+
+.w-\[492px\] {
+  width: 492px;
+}
+
 .w-full {
   width: 100%;
+}
+
+.-translate-x-1\/2 {
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .cursor-pointer {
   cursor: pointer;
 }
 
-.flex-row {
-  flex-direction: row;
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -586,12 +615,32 @@ html {
   align-items: center;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
+
 .justify-center {
   justify-content: center;
 }
 
 .justify-between {
   justify-content: space-between;
+}
+
+.gap-1 {
+  gap: 0.25rem;
+}
+
+.gap-10 {
+  gap: 2.5rem;
+}
+
+.gap-18 {
+  gap: 4.5rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-26 {
@@ -602,6 +651,14 @@ html {
   gap: 1rem;
 }
 
+.gap-5 {
+  gap: 1.25rem;
+}
+
+.gap-5\.5 {
+  gap: 1.375rem;
+}
+
 .gap-6 {
   gap: 1.5rem;
 }
@@ -610,8 +667,46 @@ html {
   gap: 2rem;
 }
 
-.gap-10 {
-  gap: 2.5rem;
+.gap-9 {
+  gap: 2.25rem;
+}
+
+.gap-\[13px\] {
+  gap: 13px;
+}
+
+.gap-\[33px\] {
+  gap: 33px;
+}
+
+.gap-\[47px\] {
+  gap: 47px;
+}
+
+.rounded-\[10px\] {
+  border-radius: 10px;
+}
+
+.rounded-\[5px\] {
+  border-radius: 5px;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.bg-\[\#bbbbbb0f\] {
+  background-color: #bbbbbb0f;
+}
+
+.bg-contact-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(26 26 26 / var(--tw-bg-opacity));
+}
+
+.bg-contact-secondary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(190 177 133 / var(--tw-bg-opacity));
 }
 
 .bg-primary {
@@ -624,8 +719,18 @@ html {
   background-color: rgb(198 182 139 / var(--tw-bg-opacity));
 }
 
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .p-10 {
   padding: 2.5rem;
+}
+
+.px-17\.5 {
+  padding-left: 4.375rem;
+  padding-right: 4.375rem;
 }
 
 .px-30 {
@@ -633,9 +738,24 @@ html {
   padding-right: 7.5rem;
 }
 
+.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.px-5\.5 {
+  padding-left: 1.375rem;
+  padding-right: 1.375rem;
+}
+
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .py-7 {
@@ -646,6 +766,46 @@ html {
 .py-7\.5 {
   padding-top: 1.875rem;
   padding-bottom: 1.875rem;
+}
+
+.py-\[11px\] {
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.px-8\.5 {
+  padding-left: 2.125rem;
+  padding-right: 2.125rem;
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.pb-20 {
+  padding-bottom: 5rem;
+}
+
+.pb-20\.5 {
+  padding-bottom: 5.125rem;
+}
+
+.pl-5 {
+  padding-left: 1.25rem;
+}
+
+.pl-5\.5 {
+  padding-left: 1.375rem;
+}
+
+.pt-19 {
+  padding-top: 4.75rem;
 }
 
 .text-center {
@@ -671,6 +831,21 @@ html {
   font-size: 15px;
 }
 
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -683,6 +858,10 @@ html {
   text-transform: uppercase;
 }
 
+.leading-\[130\%\] {
+  line-height: 130%;
+}
+
 .leading-\[14px\] {
   line-height: 14px;
 }
@@ -693,6 +872,16 @@ html {
 
 .tracking-widest {
   letter-spacing: 0.1em;
+}
+
+.text-\[\#E5E7EB\] {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+
+.text-contact-secondary {
+  --tw-text-opacity: 1;
+  color: rgb(190 177 133 / var(--tw-text-opacity));
 }
 
 .text-secondary {

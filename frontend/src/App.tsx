@@ -28,11 +28,11 @@ function App() {
       {loading ? (
         <Loading />
       ) : (
-        <>
+        <div className="relative">
           <Nabvar link={selectLink} setLink={setSelectLink} />
           <Home />
           {openContact && <Contact />}
-        </>
+        </div>
       )}
     </>
   );
