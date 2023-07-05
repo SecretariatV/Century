@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Header from "./components/Header";
 import Loading from "./components/Loading";
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     }, 2000);
   }, []);
 
-  return <>{loading ? <Loading /> : <div>Hi</div>}</>;
+  return <>{loading ? <Loading /> : <Header />}</>;
 }
 
 export default App;

@@ -7,6 +7,9 @@ export default {
         primary: "#252526",
         secondary: "#c6b68b",
       },
+      spacing: {
+        30: "7.5rem",
+      },
     },
   },
   plugins: [],
