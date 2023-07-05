@@ -666,10 +666,6 @@ html {
   width: 7.5rem;
 }
 
-.w-300 {
-  width: 75rem;
-}
-
 .w-8 {
   width: 2rem;
 }
@@ -709,6 +705,10 @@ html {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-primary {
+  grid-template-columns: min-content max-content;
 }
 
 .flex-col {
@@ -830,6 +830,11 @@ html {
   background-color: #bbbbbb0f;
 }
 
+.bg-\[\#f16100\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 97 0 / var(--tw-bg-opacity));
+}
+
 .bg-contact-primary {
   --tw-bg-opacity: 1;
   background-color: rgb(26 26 26 / var(--tw-bg-opacity));
@@ -859,23 +864,13 @@ html {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#f16100\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(241 97 0 / var(--tw-bg-opacity));
-}
-
 .p-10 {
   padding: 2.5rem;
 }
 
-.px-17 {
-  padding-left: 4.25rem;
-  padding-right: 4.25rem;
-}
-
-.px-17\.5 {
-  padding-left: 4.375rem;
-  padding-right: 4.375rem;
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .px-2 {
@@ -1260,5 +1255,17 @@ html {
   .xl\:px-30 {
     padding-left: 7.5rem;
     padding-right: 7.5rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:px-17 {
+    padding-left: 4.25rem;
+    padding-right: 4.25rem;
+  }
+
+  .\32xl\:px-17\.5 {
+    padding-left: 4.375rem;
+    padding-right: 4.375rem;
   }
 }

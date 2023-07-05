@@ -5,17 +5,17 @@ const Contact = () => {
   const [selectOffice, setSelectOffice] = useState<string>("first");
 
   return (
-    <div className="absolute top-100 left-1/2 -translate-x-1/2 w-300 bg-contact-primary rounded-[10px] flex flex-col gap-10 pt-19 pb-20.5 z-10 font-medium leading-[130%] uppercase">
-      <div className="px-17.5 flex flex-col items-center justify-center">
+    <div className="absolute top-100 left-1/2 -translate-x-1/2 bg-contact-primary rounded-[10px] grid gap-10 pt-19 pb-20.5 2xl:px-17.5 px-10 z-10 font-medium leading-[130%] uppercase">
+      <div className="flex flex-col items-center justify-center">
         <h1 className="text-contact-secondary text-lg">century 21 cyprus</h1>
         <h1 className="text-white text-5xl">contact us</h1>
       </div>
-      <div className="grid grid-cols-2 gap-18 px-17.5">
-        <div className="flex flex-col gap-5">
+      <div className="grid grid-cols-primary gap-18">
+        <div className="grid gap-5">
           <h1 className="text-white text-lg">
             find us in one of three offices in cyprus:
           </h1>
-          <div className="flex flex-col gap-[33px]">
+          <div className="grid gap-[33px]">
             <div className="flex flex-col gap-9">
               <div className="map rounded-md bg-white h-[245px] w-[492px]">
                 a
@@ -36,7 +36,7 @@ const Contact = () => {
                 ))}
               </div>
             </div>
-            <div className="flex flex-col gap-8 relative">
+            <div className="grid gap-8 relative">
               <div className="grid grid-cols-2 gap-5.5">
                 <div className="flex flex-col gap-1">
                   <h1 className="text-contact-secondary text-xs">address</h1>
@@ -66,13 +66,13 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-5">
+        <div className="grid gap-5">
           <h1 className="text-white text-lg">
             have any questions? fell free to drop us a line
           </h1>
-          <form className="flex flex-col gap-[47px]">
-            <div className="flex flex-col gap-5">
-              <div className="flex flex-col gap-2">
+          <form className="grid gap-[47px]">
+            <div className="grid gap-5">
+              <div className="grid gap-2">
                 <label
                   htmlFor="name"
                   className="pl-5.5 text-white text-xs leading-[14px] font-medium"
@@ -87,7 +87,7 @@ const Contact = () => {
                   required
                 />
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="grid gap-2">
                 <label
                   htmlFor="email"
                   className="pl-5.5 text-white text-xs leading-[14px] font-medium"
@@ -102,7 +102,7 @@ const Contact = () => {
                   required
                 />
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="grid gap-2">
                 <label
                   htmlFor="phone"
                   className="pl-5.5 text-white text-xs leading-[14px] font-medium"
@@ -117,7 +117,7 @@ const Contact = () => {
                   required
                 />
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="grid gap-2">
                 <label
                   htmlFor="message"
                   className="pl-5.5 text-white text-xs leading-[14px] font-medium"

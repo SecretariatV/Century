@@ -34,6 +34,9 @@ export default {
       backgroundImage: {
         mobile: "url('../public/img/mark.png')",
       },
+      gridTemplateColumns: {
+        primary: "min-content max-content",
+      },
     },
   },
   plugins: [],
