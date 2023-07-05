@@ -12,6 +12,7 @@ const Header = ({
   setLink: (c: number) => void;
 }) => {
   const [viewTopHeader, setviewTopHeader] = useState<boolean>(false);
+  const [viewLink, setViewLink] = useState<boolean>(false);
 
   useEffect(() => {
     setviewTopHeader(true);
@@ -20,6 +21,10 @@ const Header = ({
   const selectLink = (index: number) => {
     setLink(index);
   };
+
+  const mobileClass =
+    "cursor-pointer absolute w-8 h-8 rounded-full flex items-center justify-center text-white transition-all duration-1000 bg-[#0f1941] hover:bg-[#f16100] " +
+    `${viewLink ? "opacity-100" : "opacity-0"}`;
 
   return (
     <div className="w-full">
@@ -47,6 +52,79 @@ const Header = ({
         </div>
         <div className="absolute top-3 xl:right-30 lg:right-20 lg:block hidden">
           <img src={mark} alt="mark" />
+        </div>
+      </div>
+      <div className="sm:hidden block fixed bottom-8 left-8">
+        <input
+          id="mobileMode"
+          type="checkbox"
+          className="hidden"
+          onClick={() => setViewLink((rev) => !rev)}
+        />
+        <label
+          htmlFor="mobileMode"
+          className="cursor-pointer absolute -bottom-2 -left-2 w-10 h-10 bg-secondary rounded-full shadow-[0_5px_20px_#a79a79] transition-all duration-300 z-10 rounded-bl-sm border border-[#72623a] hover:bg-[#ccaf52] hover:shadow-[0_5px_30px_#a79a79] before:content-[' '] before:absolute before:w-full before:h-full before:left-0 before:top-0 before:rounded-full before:bg-[#0000000f] after:absolute after:w-full after:h-full after:bg-mobile"
+        />
+        <div
+          className={`absolute bottom-0 left-0 w-30 h-30 transition-all duration-300 ${
+            viewLink ? "scale-100" : "scale-0"
+          }`}
+        >
+          <div
+            className={`${mobileClass} -left-4 -top-4 ${
+              link === 0 && "bg-[#f16100]"
+            }`}
+            onClick={() => {
+              setLink(0);
+              setViewLink(false);
+            }}
+          >
+            <h1>F</h1>
+          </div>
+          <div
+            className={`${mobileClass} left-8 -top-1 ${
+              link === 1 && "bg-[#f16100]"
+            }`}
+            onClick={() => {
+              setLink(1);
+              setViewLink(false);
+            }}
+          >
+            <h1>S</h1>
+          </div>
+          <div
+            className={`${mobileClass} left-17 top-5 ${
+              link === 2 && "bg-[#f16100]"
+            }`}
+            onClick={() => {
+              setLink(2);
+              setViewLink(false);
+            }}
+          >
+            <h1>J</h1>
+          </div>
+          <div
+            className={`${mobileClass} left-23 top-14 ${
+              link === 3 && "bg-[#f16100]"
+            }`}
+            onClick={() => {
+              setLink(3);
+              setViewLink(false);
+            }}
+          >
+            <h1>B</h1>
+          </div>
+          <div
+            className={`${mobileClass} -right-4 -bottom-4 ${
+              link === 4 && "bg-[#f16100]"
+            }`}
+            onClick={() => {
+              setLink(4);
+              setViewLink(false);
+            }}
+          >
+            <h1>C</h1>
+          </div>
         </div>
       </div>
     </div>

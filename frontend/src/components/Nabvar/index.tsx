@@ -7,11 +7,7 @@ const Nabvar = ({
   link: number;
   setLink: (c: number) => void;
 }) => {
-  return (
-    <div>
-      <Header link={link} setLink={setLink} />
-    </div>
-  );
+  return <Header link={link} setLink={setLink} />;
 };
 
 export default Nabvar;

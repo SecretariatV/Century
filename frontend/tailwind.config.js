@@ -13,10 +13,12 @@ export default {
         5.5: "1.375rem",
         7.5: "1.875rem",
         8.5: "2.125rem",
+        17: "4.25rem",
         17.5: "4.375rem",
         18: "4.5rem",
         19: "4.75rem",
         20.5: "5.125rem",
+        23: "5.75rem",
         26: "6.5rem",
         30: "7.5rem",
         100: "25rem",
@@ -28,6 +30,9 @@ export default {
       },
       screens: {
         xs: "360px",
+      },
+      backgroundImage: {
+        mobile: "url('../public/img/mark.png')",
       },
     },
   },
