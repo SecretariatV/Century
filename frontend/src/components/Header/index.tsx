@@ -4,13 +4,22 @@ import { headerLink } from "../../utils/header";
 import logo from "../../../public/img/logo.png";
 import mark from "../../../public/img/mark.png";
 
-const Header = () => {
+const Header = ({
+  link,
+  setLink,
+}: {
+  link: number;
+  setLink: (c: number) => void;
+}) => {
   const [viewTopHeader, setviewTopHeader] = useState<boolean>(false);
-  const [seelctLink, setSelectLink] = useState<number>(4);
 
   useEffect(() => {
     setviewTopHeader(true);
   }, []);
+
+  const selectLink = (index: number) => {
+    setLink(index);
+  };
 
   return (
     <div className="w-full">
@@ -23,11 +32,11 @@ const Header = () => {
           {headerLink.map((item, index) => (
             <div
               className={`cursor-pointer relative after:content-[' '] after:h-[2px] after:absolute after:bg-white ${
-                index === seelctLink
+                index === link
                   ? "after:w-full"
                   : "after:w-0 after:transition-all after:duration-500 after:transition-timing-function-header hover:after:w-full"
               }`}
-              onClick={() => setSelectLink(index)}
+              onClick={() => selectLink(index)}
               key={item.type}
             >
               <h1 className="uppercase font-medium text-[15px] leading-[14px] tracking-tighter text-white">

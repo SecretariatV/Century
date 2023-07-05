@@ -1,9 +1,15 @@
 import Header from "../Header";
 
-const Nabvar = () => {
+const Nabvar = ({
+  link,
+  setLink,
+}: {
+  link: number;
+  setLink: (c: number) => void;
+}) => {
   return (
     <div>
-      <Header />
+      <Header link={link} setLink={setLink} />
     </div>
   );
 };
