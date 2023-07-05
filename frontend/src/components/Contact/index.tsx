@@ -2,7 +2,7 @@ import { useState } from "react";
 import { buttonList } from "../../utils/contact";
 
 const Contact = () => {
-  const [selectOffice, setSelectOffice] = useState<string>("");
+  const [selectOffice, setSelectOffice] = useState<string>("first");
 
   return (
     <div className="absolute top-100 left-1/2 -translate-x-1/2 w-300 bg-contact-primary rounded-[10px] flex flex-col gap-10 pt-19 pb-20.5 z-10 font-medium leading-[130%] uppercase">
@@ -23,8 +23,12 @@ const Contact = () => {
               <div className="grid grid-cols-3 gap-[13px]">
                 {buttonList.map((item) => (
                   <div
-                    className="cursor-pointer rounded-[5px] py-[11px] bg-contact-secondary flex items-center justify-center"
-                    onChange={() => setSelectOffice(item.type)}
+                    className={`cursor-pointer rounded-[5px] py-[11px] flex items-center justify-center hover:shadow-[0_0_16px_-3px_#BEB185,inset_0_0_9px_-3px_#b3a123bd] active:shadow-[0_0_10px_-3px_#BEB185,inset_0_0_15px_-3px_#b3a123bd] ${
+                      selectOffice === item.type
+                        ? "bg-contact-secondary text-white"
+                        : "bg-transparent text-contact-secondary border border-contact-secondary"
+                    }`}
+                    onClick={() => setSelectOffice(item.type)}
                     key={item.type}
                   >
                     <h1 className="text-xs leading-[14px]">paphos office</h1>
@@ -132,7 +136,7 @@ const Contact = () => {
             <div className="flex items-center justify-start">
               <button
                 type="submit"
-                className="bg-contact-secondary flex items-center justify-center uppercase rounded-md px-8.5 py-5 text-white text-sm leading-[14px] font-medium"
+                className="bg-contact-secondary flex items-center justify-center uppercase rounded-md px-8.5 py-5 text-white text-sm leading-[14px] font-medium hover:shadow-[0_0_16px_-3px_#BEB185,inset_0_0_9px_-3px_#b3a123bd]"
               >
                 send message
               </button>
