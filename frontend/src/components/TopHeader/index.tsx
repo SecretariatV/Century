@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { leftTopHeader } from "../../utils/header";
+import { leftTopHeader, rightTopHeader } from "../../utils/header";
 
 const TopHeader = () => {
-  const [selectLeftID, setSelectLeftID] = useState<number>(0);
+  const [selectLeftID, setSelectLeftID] = useState<number>();
+  const [selectRightID, setSelectRightID] = useState<number>();
+
   return (
     <div className="w-full py-3 px-30 bg-secondary flex items-center justify-between">
       <div className="flex items-center gap-6">
@@ -14,6 +16,23 @@ const TopHeader = () => {
                 : "after:w-0 after:transition-all after:duration-500 after:transition-timing-function-header hover:after:w-full"
             }`}
             onClick={() => setSelectLeftID(index)}
+            key={item.type}
+          >
+            <h1 className="uppercase font-medium text-[15px] leading-[14px] tracking-tighter">
+              {item.title}
+            </h1>
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center gap-6">
+        {rightTopHeader.map((item, index) => (
+          <div
+            className={`cursor-pointer relative after:content-[' '] after:h-[2px] after:absolute after:bg-black ${
+              index === selectRightID
+                ? "after:w-full"
+                : "after:w-0 after:transition-all after:duration-500 after:transition-timing-function-header hover:after:w-full"
+            }`}
+            onClick={() => setSelectRightID(index)}
             key={item.type}
           >
             <h1 className="uppercase font-medium text-[15px] leading-[14px] tracking-tighter">
