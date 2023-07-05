@@ -1,5 +1,11 @@
+import Header from "../Header";
+
 const Nabvar = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
 
 export default Nabvar;
