@@ -670,16 +670,12 @@ html {
   width: 2rem;
 }
 
-.w-\[400px\] {
-  width: 400px;
+.w-\[500px\] {
+  width: 500px;
 }
 
 .w-full {
   width: 100%;
-}
-
-.w-\[500px\] {
-  width: 500px;
 }
 
 .-translate-x-1\/2 {
@@ -1233,20 +1229,12 @@ html {
     grid-template-columns: min-content max-content;
   }
 
-  .lg\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .lg\:gap-26 {
     gap: 6.5rem;
   }
 
   .lg\:gap-8 {
     gap: 2rem;
-  }
-
-  .lg\:gap-5 {
-    gap: 1.25rem;
   }
 }
 
