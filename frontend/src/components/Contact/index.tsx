@@ -1,8 +1,23 @@
-import { useState } from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { buttonList } from "../../utils/contact";
 
 const Contact = () => {
   const [selectOffice, setSelectOffice] = useState<string>("first");
+  const [name, setName] = useState<string>("");
+  const [mail, setMail] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    await axios.post("http://localhost:4000/api/v1/contact", {
+      name: name,
+      mail: mail,
+      phone: phone,
+      message: message,
+    });
+  };
 
   return (
     <div className="absolute 2xl:top-100 top-80 left-1/2 -translate-x-1/2 bg-contact-primary rounded-[10px] grid gap-10 pt-19 pb-20.5 2xl:px-17.5 px-8 z-10 font-medium leading-[130%] uppercase">
@@ -68,7 +83,7 @@ const Contact = () => {
           <h1 className="text-white text-lg">
             have any questions? fell free to drop us a line
           </h1>
-          <form className="grid gap-[47px]">
+          <form className="grid gap-[47px]" onSubmit={handleSubmit}>
             <div className="grid gap-5">
               <div className="grid gap-2">
                 <label
@@ -82,6 +97,7 @@ const Contact = () => {
                   type="text"
                   placeholder="John Doe"
                   className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
+                  onChange={(e: any) => setName(e.target.value)}
                   required
                 />
               </div>
@@ -97,6 +113,7 @@ const Contact = () => {
                   type="email"
                   placeholder="johndoe@gmail.com"
                   className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
+                  onChange={(e: any) => setMail(e.target.value)}
                   required
                 />
               </div>
@@ -112,6 +129,7 @@ const Contact = () => {
                   type="tel"
                   placeholder="+1 456 4567843"
                   className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
+                  onChange={(e: any) => setPhone(e.target.value)}
                   required
                 />
               </div>
@@ -128,6 +146,7 @@ const Contact = () => {
                   rows="6"
                   placeholder="How we can help you?"
                   className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
+                  onChange={(e: any) => setMessage(e.target.value)}
                 />
               </div>
             </div>
