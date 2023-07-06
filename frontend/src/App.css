@@ -9,3 +9,8 @@
     font-family: Barlow Semi Condensed, sans-serif;
   }
 }
+
+h1,
+h2 {
+  font-stretch: condensed;
+}

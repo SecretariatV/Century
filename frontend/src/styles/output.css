@@ -626,20 +626,8 @@ html {
   margin-left: -2.5rem;
 }
 
-.-mt-10 {
-  margin-top: -2.5rem;
-}
-
 .mt-10 {
   margin-top: 2.5rem;
-}
-
-.mt-16 {
-  margin-top: 4rem;
-}
-
-.mt-20 {
-  margin-top: 5rem;
 }
 
 .block {
@@ -751,6 +739,14 @@ html {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-rows-2 {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -1031,6 +1027,14 @@ html {
   text-transform: uppercase;
 }
 
+.lowercase {
+  text-transform: lowercase;
+}
+
+.normal-case {
+  text-transform: none;
+}
+
 .leading-\[130\%\] {
   line-height: 130%;
 }
@@ -1114,6 +1118,11 @@ html {
 
 .duration-300 {
   transition-duration: 300ms;
+}
+
+h1,
+h2 {
+  font-stretch: condensed;
 }
 
 .before\:absolute::before {

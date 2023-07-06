@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { buttonList } from "../../utils/contact";
 import Success from "../../../public/img/success.png";
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
@@ -195,20 +195,24 @@ const Contact = () => {
                 ))}
               </div>
             </div>
-            <div className="flex gap-5.5 xl:w-[492px] lg:w-[400px] w-[500px]">
-              <div className="grid gap-8">
+            <div className="grid grid-cols-2 gap-5.5 xl:w-[492px] lg:w-[400px] w-[500px]">
+              <div className="grid grid-rows-2 gap-8">
                 <div className="flex flex-col gap-1">
                   <h1 className="text-contact-secondary text-xs">address</h1>
-                  <h2 className="text-white">{officeInfo.address}</h2>
+                  <h2 className="text-white normal-case">
+                    {officeInfo.address}
+                  </h2>
                 </div>
                 <div className="flex flex-col gap-1">
                   <h1 className="text-contact-secondary text-xs">
                     business hours
                   </h1>
-                  <h2 className="text-white">{officeInfo.hour}</h2>
+                  <h2 className="text-white normal-case font-stretch-nomal">
+                    {officeInfo.hour}
+                  </h2>
                 </div>
               </div>
-              <div className="grid gap-8">
+              <div className="grid grid-rwos-2 gap-8">
                 <div className="flex flex-col gap-1">
                   <h1 className="text-contact-secondary text-xs">phone</h1>
                   {officeInfo.phone.map((phone) => (
@@ -219,7 +223,7 @@ const Contact = () => {
                 </div>
                 <div className="flex flex-col gap-1">
                   <h1 className="text-contact-secondary text-xs">email</h1>
-                  <h2 className="text-white">{officeInfo.email}</h2>
+                  <h2 className="text-white lowercase ">{officeInfo.email}</h2>
                 </div>
               </div>
             </div>
@@ -308,8 +312,8 @@ const Contact = () => {
                   </label>
                   <textarea
                     id="message"
-                    cols="30"
-                    rows="6"
+                    cols={30}
+                    rows={6}
                     placeholder="How we can help you?"
                     className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
                     onChange={(e: any) => setMessage(e.target.value)}
