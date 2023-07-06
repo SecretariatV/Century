@@ -1,99 +1,96 @@
 # Century
 
 ## Introduction
-This project is a small app that demonstrates Contact functionality.
+Century is a small app that demonstrates contact functionality. The main function of this app is to search for branch company information and provide contact functionality through Google Maps integration.
 
-## Feature
-The main function is the branch company information search and contact function through Google Map.
+## Features
+- Branch company information search
+- Contact functionality through Google Maps
 
 ## Tech Stack
 
-### Front end
-React.js, TypeScript, Tailwind CSS
+### Frontend
+- React.js
+- TypeScript
+- Tailwind CSS
 
-### Back end
-Node.js, Express
+### Backend
+- Node.js
+- Express
 
 ### Database
-MongoDB
+- MongoDB
 
 ### Building
-Vite
+- Vite
 
-## How to use
+## How to Use
 
-### Clone
-Using terminal
-```
+### Clone the Repository
+```bash
 git clone https://github.com/padrone1225/test.git
 ```
 
 ### Install Dependencies
-Front end
-```
+#### Frontend
+```bash
 cd test/frontend
-npm install 'or' npm i
+npm install
 ```
 
-Back end
-```
+#### Backend
+```bash
 cd test
-npm install 'or' npm i
+npm install
 ```
 
-### Start Project
-Start back-end
-```
+### Start the Project
+#### Start the backend
+```bash
 npm run server
 ```
 
-Start front-end
-```
+#### Start the frontend
+```bash
 npm run frontend
 ```
 
-Start project
-```
+#### Start the project (both frontend and backend)
+```bash
 npm run dev
 ```
 
-### Build
-Build CSS
-```
+### Build the Project
+#### Build CSS
+```bash
 cd frontend
 npx tailwindcss -i ./src/App.css -o ./src/styles/output.css --watch
 ```
 
-Build Project
-```
+#### Build Project
+```bash
 npm run render-postbuild
 ```
 
 ### MongoDB
-Local DB
-```
+#### Local DB
+```bash
 npm run render-postbuild
 npm start
 ```
 
-Online DB
-```
+#### Online DB
+```bash
 npm run render-postbuild
 npm start --production=true
 ```
 
 ### URL
-```
-http://localhost:4000
-```
+Access the application at [http://localhost:4000](http://localhost:4000)
 
-## Others
+## Validation
+In order to check the validity of the contact information, a server-side middleware was implemented using regular expressions (RegEx) to validate the values. The following patterns were used:
 
-### Validation
-In order to check the validity of the contact information, middleware was built to check the values using RegEx in the server.
-
-```
-const namePattern = /^([A-Z][a-z]*)(\s[A-Z][a-z]*){0,2}$/;
-const mailPattern = /^[a-z][a-z0-9.]*@[a-z]+\.[a-z]+$/;
-const phoneNumberPattern = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
-```
+- Name: `/^([A-Z][a-z]*)(\s[A-Z][a-z]*){0,2}$/`
+- Email: `/^[a-z][a-z0-9.]*@[a-z]+\.[a-z]+$/`
+- Phone Number: `/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/`
