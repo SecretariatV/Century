@@ -99,17 +99,17 @@ const Contact = () => {
     setShowForm(false);
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-      setShowResult(true);
-    }, 2000);
-
-    const result = await axios.post("http://localhost:4000/api/v1/contact", {
+    const result = await axios.post(window.location.href + "api/v1/contact", {
       name: name,
       mail: mail,
       phone: phone,
       message: message,
     });
+    setTimeout(() => {
+      setLoading(false);
+      setShowResult(true);
+    }, 2000);
+
     setResult(result.data.status);
     if (!result.data.status) {
       setError(result.data.message);
