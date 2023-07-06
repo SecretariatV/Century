@@ -5,19 +5,19 @@ const Contact = () => {
   const [selectOffice, setSelectOffice] = useState<string>("first");
 
   return (
-    <div className="absolute top-100 left-1/2 -translate-x-1/2 bg-contact-primary rounded-[10px] grid gap-10 pt-19 pb-20.5 2xl:px-17.5 px-10 z-10 font-medium leading-[130%] uppercase">
+    <div className="absolute 2xl:top-100 top-80 left-1/2 -translate-x-1/2 bg-contact-primary rounded-[10px] grid gap-10 pt-19 pb-20.5 2xl:px-17.5 px-8 z-10 font-medium leading-[130%] uppercase">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-contact-secondary text-lg">century 21 cyprus</h1>
         <h1 className="text-white text-5xl">contact us</h1>
       </div>
-      <div className="grid grid-cols-primary gap-18">
+      <div className="grid lg:grid-cols-primary 2xl:gap-18 xl:gap-9 gap-5">
         <div className="grid gap-5">
           <h1 className="text-white text-lg">
             find us in one of three offices in cyprus:
           </h1>
           <div className="grid gap-[33px]">
             <div className="flex flex-col gap-9">
-              <div className="map rounded-md bg-white h-[245px] w-[492px]">
+              <div className="map rounded-md bg-white h-[245px] xl:w-[492px] lg:w-[400px] w-[500px]">
                 a
               </div>
               <div className="grid grid-cols-3 gap-[13px]">
@@ -36,8 +36,8 @@ const Contact = () => {
                 ))}
               </div>
             </div>
-            <div className="grid gap-8 relative">
-              <div className="grid grid-cols-2 gap-5.5">
+            <div className="flex gap-5.5 xl:w-[492px] lg:w-[400px] w-[500px]">
+              <div className="grid gap-8">
                 <div className="flex flex-col gap-1">
                   <h1 className="text-contact-secondary text-xs">address</h1>
                   <h2 className="text-white">
@@ -45,18 +45,16 @@ const Contact = () => {
                   </h2>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <h1 className="text-contact-secondary text-xs">phone</h1>
-                  <h2 className="text-white">
-                    {`+30 210 3635 457 +30 210 3635 457`}
-                  </h2>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-5.5">
-                <div className="flex flex-col gap-1">
                   <h1 className="text-contact-secondary text-xs">
                     business hours
                   </h1>
                   <h2 className="text-white">Mon to Fri: 9:00 am - 6:00 pm</h2>
+                </div>
+              </div>
+              <div className="grid gap-8">
+                <div className="flex flex-col gap-1">
+                  <h1 className="text-contact-secondary text-xs">phone</h1>
+                  <h2 className="text-white">{`+30 210 3635 457`}</h2>
                 </div>
                 <div className="flex flex-col gap-1">
                   <h1 className="text-contact-secondary text-xs">email</h1>

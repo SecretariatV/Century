@@ -36,6 +36,7 @@ export default {
       },
       gridTemplateColumns: {
         primary: "min-content max-content",
+        // primary: "1fr min-content",
       },
     },
   },
