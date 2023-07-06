@@ -3,7 +3,12 @@ import React, { useState, useEffect, useMemo } from "react";
 import { buttonList } from "../../utils/contact";
 import Success from "../../../public/img/success.png";
 import Map from "../Map";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  MarkerF,
+} from "@react-google-maps/api";
 
 interface resultType {
   result: boolean;
@@ -55,12 +60,21 @@ const Contact = () => {
       setShowResult(true);
       setResult(result.data.status);
     }, 2000);
-    console.log("resutl", result);
   };
 
-  // const { isLoaded } = useLoadScript({
-  //   googleMapsApiKey: "AIzaSyALELYVGqIuSDVhYwjCJQIULNdpZs-X2-c",
-  // });
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyDzwyGnWwge77qFtkOYHBQ0D76JIrLRic8",
+  });
+
+  const customMarker = {
+    path: "M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759   c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188z    M32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713   v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336   h13.771l2.219,3.336H14.568z M31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805",
+    fillColor: "red",
+    fillOpacity: 2,
+    strokeWeight: 1,
+    rotation: 0,
+    scale: 1,
+  };
+
   const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
 
   return (
@@ -77,13 +91,26 @@ const Contact = () => {
           <div className="grid gap-[33px]">
             <div className="flex flex-col gap-9">
               <div className="rounded-md bg-white h-[245px] xl:w-[492px] lg:w-[400px] w-[500px]">
-                {/* <GoogleMap
-                  mapContainerClassName="map-container"
-                  center={center}
-                  zoom={10}
-                >
-                  <Marker position={{ lat: 18.52043, lng: 73.856743 }} />
-                </GoogleMap> */}
+                {!isLoaded ? (
+                  <h1>Loading ...</h1>
+                ) : (
+                  <GoogleMap
+                    mapContainerClassName="h-full w-full"
+                    center={center}
+                    zoom={10}
+                  >
+                    <MarkerF
+                      position={{ lat: 18.52043, lng: 73.856743 }}
+                      icon={
+                        "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                      }
+                    />
+                    {/* <Marker
+                      position={{ lat: 18.52043, lng: 73.856743 }}
+                      // icon={customMarker}
+                    /> */}
+                  </GoogleMap>
+                )}
               </div>
               <div className="grid grid-cols-3 gap-[13px]">
                 {buttonList.map((item) => (
@@ -138,10 +165,12 @@ const Contact = () => {
               {result ? (
                 <>
                   <img src={Success} alt="success" />
-                  <h1 className="tex-contact-secondary text-xs">Success</h1>
+                  <h1 className="tex-contact-secondary text-xs uppercase">
+                    THANK YOU! PLEASE CHECK YOUR INBOX
+                  </h1>
                 </>
               ) : (
-                <h1 className="text-red text-xs">Faild</h1>
+                <h1 className=" text-red-700 text-xs">Faild</h1>
               )}
             </div>
             <form

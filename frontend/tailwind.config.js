@@ -37,9 +37,6 @@ export default {
       gridTemplateColumns: {
         primary: "min-content max-content",
       },
-      gridTemplateRows: {
-        primary: "auto auto",
-      },
       animation: {
         rotate: "rotate 2s linear infinite",
       },

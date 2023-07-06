@@ -670,6 +670,10 @@ html {
   height: 100vh;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -735,10 +739,6 @@ html {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid-rows-primary {
-  grid-template-rows: auto auto;
 }
 
 .flex-col {
@@ -1043,6 +1043,11 @@ html {
 .text-contact-secondary {
   --tw-text-opacity: 1;
   color: rgb(190 177 133 / var(--tw-text-opacity));
+}
+
+.text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
 
 .text-secondary {
