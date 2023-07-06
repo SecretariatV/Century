@@ -28,6 +28,28 @@ const Offices: Array<officeInfo> = [
   },
 ];
 
+const markers = [
+  {
+    address: "Tsakalof 15, Kolonaki, Limassol, Cypruss, 22033",
+    lat: 37.978227,
+    lng: 23.744924,
+    type: "first",
+  },
+
+  {
+    address: "PRIME CAFE COFFE & SNACKS",
+    lat: 37.974085,
+    lng: 23.7493,
+    type: "second",
+  },
+  {
+    address: "Johnnie Rousso",
+    lat: 37.9776212,
+    lng: 23.7401197,
+    type: "third",
+  },
+];
+
 interface info {
   address: string;
   lat: number;
@@ -49,44 +71,50 @@ const Contact = () => {
   const [result, setResult] = useState<boolean>(false);
   const [officeInfo, setOfficeInfo] = useState<info>({
     address: "",
-    lat: 37.9422741,
-    lng: 23.6915615,
+    lat: -1,
+    lng: -1,
     phone: [],
     hour: "",
     email: "",
+  });
+  const [error, setError] = useState<string>("");
+
+  useEffect(() => {
+    setOfficeInfo({
+      address: markers[0].address,
+      lat: markers[0].lat,
+      lng: markers[0].lng,
+      phone: Offices[0].phone,
+      hour: Offices[0].hour,
+      email: Offices[0].email,
+    });
+  }, []);
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyDzwyGnWwge77qFtkOYHBQ0D76JIrLRic8",
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setShowForm(false);
     setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      setShowResult(true);
+    }, 2000);
+
     const result = await axios.post("http://localhost:4000/api/v1/contact", {
       name: name,
       mail: mail,
       phone: phone,
       message: message,
     });
-    setTimeout(() => {
-      setLoading(false);
-      setShowResult(true);
-      setResult(result.data.status);
-    }, 2000);
+    setResult(result.data.status);
+    if (!result.data.status) {
+      setError(result.data.message);
+    }
   };
-
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDzwyGnWwge77qFtkOYHBQ0D76JIrLRic8",
-  });
-
-  const markers = [
-    {
-      address: "Tsakalof 15, Kolonaki, Limassol, Cypruss, 22033",
-      lat: 37.9422741,
-      lng: 23.6915615,
-      type: "first",
-    },
-    { address: "aaaa", lat: 37.9722741, lng: 23.7315615, type: "second" },
-    { address: "aaaa", lat: 37.9482741, lng: 23.6515615, type: "third" },
-  ];
 
   const handleMarkerClick = (
     lat: number,
@@ -126,7 +154,7 @@ const Contact = () => {
                   <GoogleMap
                     mapContainerClassName="h-full w-full"
                     center={{ lat: officeInfo.lat, lng: officeInfo.lng }}
-                    zoom={12}
+                    zoom={15}
                   >
                     {markers.map(({ address, lat, lng, type }, id) => (
                       <MarkerF
@@ -202,16 +230,20 @@ const Contact = () => {
             have any questions? fell free to drop us a line
           </h1>
           <>
-            <div className={`flex gap-3 ${showResult ? "block" : "hidden"}`}>
+            <div
+              className={`flex gap-3 font-medium text-lg uppercase ${
+                showResult ? "block" : "hidden"
+              }`}
+            >
               {result ? (
                 <>
                   <img src={Success} alt="success" />
-                  <h1 className="tex-contact-secondary text-xs uppercase">
+                  <h1 className="text-contact-secondary">
                     THANK YOU! PLEASE CHECK YOUR INBOX
                   </h1>
                 </>
               ) : (
-                <h1 className=" text-red-700 text-xs">Faild</h1>
+                <h1 className="text-red-700">{error}</h1>
               )}
             </div>
             <form
@@ -298,9 +330,9 @@ const Contact = () => {
                 loading ? "block" : "hidden"
               }`}
             >
-              <div className="absolute top-0 left-1/2 -mt-10 -ml-10 w-20 h-20">
-                <div className="w-20 h-20 rounded-full shadow-[0_4px_0_#00abf2_inset] animate-rotate"></div>
-                <div className="absolute top-0 left-0 w-20 h-20 rounded-full shadow-sm[0_0_10px_4px_rgba(0,0,0,0.3)_inset]"></div>
+              <div className="absolute top-0 left-1/2 mt-10 -ml-10 w-20 h-20">
+                <div className="w-20 h-20 rounded-full shadow-[0_4px_0_#00abf2_inset] animate-rotate" />
+                <div className="absolute top-0 left-0 w-20 h-20 rounded-full shadow-sm[0_0_10px_4px_rgba(0,0,0,0.3)_inset]" />
               </div>
             </div>
           </>
