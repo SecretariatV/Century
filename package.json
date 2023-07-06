@@ -2,23 +2,30 @@
   "name": "century",
   "version": "1.0.0",
   "description": "Test",
-  "main": "index.js",
+  "main": "backend/server.js",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "frontend": "npm run dev --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run frontend\""
+    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
+    "render-postbuild": "npm install --prefix frontend && npm run build --prefix frontend && npm start --production=true"
   },
   "keywords": [
     "Vite",
     "React",
     "Typescript",
+    "Tailwind CSS",
     "Express",
     "Firebase"
   ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^8.2.0"
+    "axios": "^1.4.0",
+    "concurrently": "^8.2.0",
+    "express": "^4.18.2",
+    "mongoose": "^6.9.2",
+    "nodemon": "^2.0.20",
+    "cors": "^2.8.5"
   }
 }
