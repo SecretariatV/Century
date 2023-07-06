@@ -1,6 +1,7 @@
-import Mark from "./mark";
+import Active from "./Active";
+import Default from "./Default";
 
-const Icon = () => {
+const Icon = ({ active }: { active: boolean }) => {
   return (
     <svg
       width="45"
@@ -9,7 +10,7 @@ const Icon = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <Mark type={false} />
+      {active ? <Active /> : <Default />}
     </svg>
   );
 };
