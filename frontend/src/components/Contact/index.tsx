@@ -2,17 +2,37 @@ import axios from "axios";
 import React, { useState, useEffect, useMemo } from "react";
 import { buttonList } from "../../utils/contact";
 import Success from "../../../public/img/success.png";
-import Map from "../Map";
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  MarkerF,
-} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
+import { officeInfo } from "../../utils/map";
 
-interface resultType {
-  result: boolean;
-  type: boolean;
+const Offices: Array<officeInfo> = [
+  {
+    address: "",
+    phone: ["+31 423 3323", "+31 423 1912"],
+    hour: "Mon to Fri:  9:00 AM - 6:00 PM",
+    email: "info@century21.com",
+  },
+  {
+    address: "",
+    phone: ["+31 223 0923", "+31 223 1752"],
+    hour: "Tue to Sun:  6:00 AM - 6:00 PM",
+    email: "help@century21.com",
+  },
+  {
+    address: "",
+    phone: ["+31 483 5231", "+31 463 14152"],
+    hour: "Fri to Wen:  6:00 AM - 6:00 AM",
+    email: "support@century21.com",
+  },
+];
+
+interface info {
+  address: string;
+  lat: number;
+  lng: number;
+  phone: Array<string>;
+  hour: string;
+  email: string;
 }
 
 const Contact = () => {
@@ -25,25 +45,18 @@ const Contact = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [showResult, setShowResult] = useState<boolean>(false);
   const [result, setResult] = useState<boolean>(false);
-
-  const [coordinates, setCoordinates] = useState({});
-  const [bounds, setBounds] = useState({});
-  const [filteredPlaces, setFilteredPlaces] = useState([]);
-  const [childClicked, setChildClicked] = useState(null);
-  const [weatherData, setWeatherData] = useState([]);
-  const [places, setPlaces] = useState([]);
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      ({ coords: { latitude, longitude } }) => {
-        setCoordinates({ lat: latitude, lng: longitude });
-      }
-    );
-  }, []);
+  const [officeInfo, setOfficeInfo] = useState<info>({
+    address: "",
+    lat: -1,
+    lng: -1,
+    phone: [],
+    hour: "",
+    email: "",
+  });
 
   useEffect(() => {
-    console.log("coodi", coordinates);
-  }, [coordinates]);
+    console.log("info", officeInfo);
+  }, [officeInfo]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -67,10 +80,33 @@ const Contact = () => {
   });
 
   const markers = [
-    { lat: 18.5204, lng: 73.8567 },
-    { lat: 18.5314, lng: 73.8446 },
-    { lat: 18.5642, lng: 73.7769 },
+    {
+      address: "Tsakalof 15, Kolonaki, Limassol, Cypruss, 22033",
+      lat: 37.9422741,
+      lng: 23.6915615,
+      type: "first",
+    },
+    { address: "aaaa", lat: 37.9722741, lng: 23.7315615, type: "second" },
+    { address: "aaaa", lat: 37.9482741, lng: 23.6515615, type: "third" },
   ];
+
+  const handleMarkerClick = (
+    lat: number,
+    lng: number,
+    address: string,
+    type: string,
+    id: number
+  ) => {
+    setSelectOffice(type);
+    setOfficeInfo({
+      address: address,
+      lat: lat,
+      lng: lng,
+      phone: Offices[id].phone,
+      hour: Offices[id].hour,
+      email: Offices[id].email,
+    });
+  };
 
   const customMarker = {
     path: "M29.395,0H17.636c-3.117,0-5.643,3.467-5.643,6.584v34.804c0,3.116,2.526,5.644,5.643,5.644h11.759   c3.116,0,5.644-2.527,5.644-5.644V6.584C35.037,3.467,32.511,0,29.395,0z M34.05,14.188v11.665l-2.729,0.351v-4.806L34.05,14.188z    M32.618,10.773c-1.016,3.9-2.219,8.51-2.219,8.51H16.631l-2.222-8.51C14.41,10.773,23.293,7.755,32.618,10.773z M15.741,21.713   v4.492l-2.73-0.349V14.502L15.741,21.713z M13.011,37.938V27.579l2.73,0.343v8.196L13.011,37.938z M14.568,40.882l2.218-3.336   h13.771l2.219,3.336H14.568z M31.321,35.805v-7.872l2.729-0.355v10.048L31.321,35.805",
@@ -80,8 +116,6 @@ const Contact = () => {
     rotation: 0,
     scale: 1,
   };
-
-  const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
 
   return (
     <div className="absolute 2xl:top-100 top-80 left-1/2 -translate-x-1/2 bg-contact-primary rounded-[10px] grid gap-10 pt-19 pb-20.5 2xl:px-17.5 px-8 z-10 font-medium leading-[130%] uppercase">
@@ -102,16 +136,20 @@ const Contact = () => {
                 ) : (
                   <GoogleMap
                     mapContainerClassName="h-full w-full"
-                    center={center}
-                    zoom={10}
+                    // onLoad={onMapLoad}
+                    center={{ lat: 37.9422741, lng: 23.6915615 }}
+                    zoom={15}
                   >
-                    {markers.map(({ lat, lng }, id) => (
+                    {markers.map(({ address, lat, lng, type }, id) => (
                       <MarkerF
-                        key={id}
+                        key={type}
                         position={{ lat, lng }}
                         icon={
                           "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
                         }
+                        onClick={() => {
+                          handleMarkerClick(lat, lng, address, type, id);
+                        }}
                       />
                     ))}
                   </GoogleMap>
