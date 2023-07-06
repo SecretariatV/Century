@@ -1,6 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { buttonList } from "../../utils/contact";
+import Success from "../../../public/img/success.png";
+import Map from "../Map";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+
+interface resultType {
+  result: boolean;
+  type: boolean;
+}
 
 const Contact = () => {
   const [selectOffice, setSelectOffice] = useState<string>("first");
@@ -8,16 +16,52 @@ const Contact = () => {
   const [mail, setMail] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [message, setMessage] = useState<string>("");
+  const [showForm, setShowForm] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showResult, setShowResult] = useState<boolean>(false);
+  const [result, setResult] = useState<boolean>(false);
+
+  const [coordinates, setCoordinates] = useState({});
+  const [bounds, setBounds] = useState({});
+  const [filteredPlaces, setFilteredPlaces] = useState([]);
+  const [childClicked, setChildClicked] = useState(null);
+  const [weatherData, setWeatherData] = useState([]);
+  const [places, setPlaces] = useState([]);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setCoordinates({ lat: latitude, lng: longitude });
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    console.log("coodi", coordinates);
+  }, [coordinates]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await axios.post("http://localhost:4000/api/v1/contact", {
+    setShowForm(false);
+    setLoading(true);
+    const result = await axios.post("http://localhost:4000/api/v1/contact", {
       name: name,
       mail: mail,
       phone: phone,
       message: message,
     });
+    setTimeout(() => {
+      setLoading(false);
+      setShowResult(true);
+      setResult(result.data.status);
+    }, 2000);
+    console.log("resutl", result);
   };
+
+  // const { isLoaded } = useLoadScript({
+  //   googleMapsApiKey: "AIzaSyALELYVGqIuSDVhYwjCJQIULNdpZs-X2-c",
+  // });
+  const center = useMemo(() => ({ lat: 18.52043, lng: 73.856743 }), []);
 
   return (
     <div className="absolute 2xl:top-100 top-80 left-1/2 -translate-x-1/2 bg-contact-primary rounded-[10px] grid gap-10 pt-19 pb-20.5 2xl:px-17.5 px-8 z-10 font-medium leading-[130%] uppercase">
@@ -32,8 +76,14 @@ const Contact = () => {
           </h1>
           <div className="grid gap-[33px]">
             <div className="flex flex-col gap-9">
-              <div className="map rounded-md bg-white h-[245px] xl:w-[492px] lg:w-[400px] w-[500px]">
-                a
+              <div className="rounded-md bg-white h-[245px] xl:w-[492px] lg:w-[400px] w-[500px]">
+                {/* <GoogleMap
+                  mapContainerClassName="map-container"
+                  center={center}
+                  zoom={10}
+                >
+                  <Marker position={{ lat: 18.52043, lng: 73.856743 }} />
+                </GoogleMap> */}
               </div>
               <div className="grid grid-cols-3 gap-[13px]">
                 {buttonList.map((item) => (
@@ -79,86 +129,111 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="grid gap-5">
+        <div className={`gap-5 ${showForm ? "grid" : "flex flex-col"}`}>
           <h1 className="text-white text-lg">
             have any questions? fell free to drop us a line
           </h1>
-          <form className="grid gap-[47px]" onSubmit={handleSubmit}>
-            <div className="grid gap-5">
-              <div className="grid gap-2">
-                <label
-                  htmlFor="name"
-                  className="pl-5.5 text-white text-xs leading-[14px] font-medium"
-                >
-                  name <b className="text-contact-secondary">*</b>
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="John Doe"
-                  className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
-                  onChange={(e: any) => setName(e.target.value)}
-                  required
-                />
+          <>
+            <div className={`flex gap-3 ${showResult ? "block" : "hidden"}`}>
+              {result ? (
+                <>
+                  <img src={Success} alt="success" />
+                  <h1 className="tex-contact-secondary text-xs">Success</h1>
+                </>
+              ) : (
+                <h1 className="text-red text-xs">Faild</h1>
+              )}
+            </div>
+            <form
+              className={`grid gap-[47px] ${showForm ? "block" : "hidden"}`}
+              onSubmit={handleSubmit}
+            >
+              <div className="grid gap-5">
+                <div className="grid gap-2">
+                  <label
+                    htmlFor="name"
+                    className="pl-5.5 text-white text-xs leading-[14px] font-medium"
+                  >
+                    name <b className="text-contact-secondary">*</b>
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    placeholder="John Doe"
+                    className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
+                    onChange={(e: any) => setName(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <label
+                    htmlFor="email"
+                    className="pl-5.5 text-white text-xs leading-[14px] font-medium"
+                  >
+                    email <b className="text-contact-secondary">*</b>
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="johndoe@gmail.com"
+                    className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
+                    onChange={(e: any) => setMail(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <label
+                    htmlFor="phone"
+                    className="pl-5.5 text-white text-xs leading-[14px] font-medium"
+                  >
+                    phone number <b className="text-contact-secondary">*</b>
+                  </label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    placeholder="+1 456 4567843"
+                    className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
+                    onChange={(e: any) => setPhone(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <label
+                    htmlFor="message"
+                    className="pl-5.5 text-white text-xs leading-[14px] font-medium"
+                  >
+                    message
+                  </label>
+                  <textarea
+                    id="message"
+                    cols="30"
+                    rows="6"
+                    placeholder="How we can help you?"
+                    className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
+                    onChange={(e: any) => setMessage(e.target.value)}
+                  />
+                </div>
               </div>
-              <div className="grid gap-2">
-                <label
-                  htmlFor="email"
-                  className="pl-5.5 text-white text-xs leading-[14px] font-medium"
+              <div className="flex items-center justify-start">
+                <button
+                  type="submit"
+                  className="bg-contact-secondary flex items-center justify-center uppercase rounded-md px-8.5 py-5 text-white text-sm leading-[14px] font-medium hover:shadow-[0_0_16px_-3px_#BEB185,inset_0_0_9px_-3px_#b3a123bd]"
                 >
-                  email <b className="text-contact-secondary">*</b>
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  placeholder="johndoe@gmail.com"
-                  className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
-                  onChange={(e: any) => setMail(e.target.value)}
-                  required
-                />
+                  send message
+                </button>
               </div>
-              <div className="grid gap-2">
-                <label
-                  htmlFor="phone"
-                  className="pl-5.5 text-white text-xs leading-[14px] font-medium"
-                >
-                  phone number <b className="text-contact-secondary">*</b>
-                </label>
-                <input
-                  id="phone"
-                  type="tel"
-                  placeholder="+1 456 4567843"
-                  className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
-                  onChange={(e: any) => setPhone(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="grid gap-2">
-                <label
-                  htmlFor="message"
-                  className="pl-5.5 text-white text-xs leading-[14px] font-medium"
-                >
-                  message
-                </label>
-                <textarea
-                  id="message"
-                  cols="30"
-                  rows="6"
-                  placeholder="How we can help you?"
-                  className="px-5.5 py-4 rounded-md bg-[#bbbbbb0f] text-[#E5E7EB]"
-                  onChange={(e: any) => setMessage(e.target.value)}
-                />
+            </form>
+            <div
+              className={`flex items-center justify-center relative ${
+                loading ? "block" : "hidden"
+              }`}
+            >
+              <div className="absolute top-0 left-1/2 -mt-10 -ml-10 w-20 h-20">
+                <div className="w-20 h-20 rounded-full shadow-[0_4px_0_#00abf2_inset] animate-rotate"></div>
+                <div className="absolute top-0 left-0 w-20 h-20 rounded-full shadow-sm[0_0_10px_4px_rgba(0,0,0,0.3)_inset]"></div>
               </div>
             </div>
-            <div className="flex items-center justify-start">
-              <button
-                type="submit"
-                className="bg-contact-secondary flex items-center justify-center uppercase rounded-md px-8.5 py-5 text-white text-sm leading-[14px] font-medium hover:shadow-[0_0_16px_-3px_#BEB185,inset_0_0_9px_-3px_#b3a123bd]"
-              >
-                send message
-              </button>
-            </div>
-          </form>
+          </>
         </div>
       </div>
     </div>

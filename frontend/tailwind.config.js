@@ -36,7 +36,18 @@ export default {
       },
       gridTemplateColumns: {
         primary: "min-content max-content",
-        // primary: "1fr min-content",
+      },
+      gridTemplateRows: {
+        primary: "auto auto",
+      },
+      animation: {
+        rotate: "rotate 2s linear infinite",
+      },
+      keyframes: {
+        rotate: {
+          "0%": { transform: "rotate(0)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
     },
   },
