@@ -1,22 +1,20 @@
 const mongoose = require("mongoose");
 
 const contactSchema = new mongoose.Schema({
-  contactInfo: {
-    name: {
-      type: String,
-      require: true,
-    },
-    email: {
-      type: String,
-      require: true,
-    },
-    phone: {
-      type: String,
-      require: true,
-    },
-    message: {
-      type: String,
-    },
+  name: {
+    type: String,
+    require: true,
+  },
+  mail: {
+    type: String,
+    require: true,
+  },
+  phone: {
+    type: String,
+    require: true,
+  },
+  message: {
+    type: String,
   },
 });
 
